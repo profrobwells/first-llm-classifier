@@ -28,6 +28,10 @@ tomli = "*"
 
 [packages]
 exceptiongroup = "*"
+pandas = "*"
+altair = "*"
+jupyterlab = "*"
+geopandas = "*"
 
 [requires]
 python_version = "3.11"
