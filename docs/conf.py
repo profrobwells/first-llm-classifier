@@ -1,36 +1,30 @@
-"""Configuration file for the Sphinx documentation builder."""
-import os
-import sys
+from typing import Any
 from datetime import datetime
 
-# Insert the parent directory into the path
-sys.path.insert(0, os.path.abspath("../your_source_code"))
-
-project = "your-package-name"
+project = "First LLM Classifier"
 year = datetime.now().year
-copyright = f"{year}"
-author = "your-name"
+copyright = f"{year} palewire"
 
 templates_path = ["_templates"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-html_theme = "sphinx_rtd_theme"
-html_baseurl = "/docs/"
+html_theme = "palewire"
 pygments_style = "sphinx"
 
-autodoc_member_order = "bysource"
-autodoc_default_options = {
-    "members": True,
-    "member-order": "bysource",
-    "special-members": "__init__",
-    "undoc-members": True,
-    "show-inheritance": True,
+html_sidebars: dict[Any, Any] = {
+    "**": [
+        "about.html",
+        "navigation.html",
+    ]
+}
+html_theme_options: dict[Any, Any] = {
+    "canonical_url": "https://palewi.re/docs/first-llm-classifier/",
 }
 
 extensions = [
     "myst_parser",
-    "sphinx_click",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.napoleon",
-    "sphinxcontrib.mermaid",
+]
+
+myst_enable_extensions = [
+    "attrs_block",
 ]
