@@ -16,10 +16,10 @@ Change into the project directory:
 cd first-llm-classifer
 ```
 
-Install the dependencies using pipenv:
+Install the dependencies using uv:
 
 ```bash
-pipenv install
+uv sync
 ```
 
 ## Contributing
