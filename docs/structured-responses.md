@@ -381,7 +381,7 @@ If the team's league is not on the list, you should label them as "Other".
 You can also ask the function to automatically retry if it doesn't get a valid response.
 
 ```
-!pip install groq rich retry
+!pip install groq rich ipywidgets retry
 ```
 
 {emphasize-lines="3"}

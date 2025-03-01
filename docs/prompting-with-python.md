@@ -3,7 +3,7 @@
 Install the libraries we need.
 
 ```python
-!pip install groq rich
+!pip install groq rich ipywidgets
 ```
 
 Import

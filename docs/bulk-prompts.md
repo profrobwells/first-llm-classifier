@@ -175,7 +175,7 @@ You should return the following:
 Now let's get some real data out.
 
 ```
-!pip install groq rich retry pandas
+!pip install groq rich ipywidgets retry pandas
 ```
 
 {emphasize-lines="5"}
