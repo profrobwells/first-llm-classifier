@@ -1,5 +1,7 @@
-from typing import Any
+"""Settings for Sphinx."""
+
 from datetime import datetime
+from typing import Any
 
 project = "First LLM Classifier"
 year = datetime.now().year
@@ -27,4 +29,7 @@ extensions = [
 
 myst_enable_extensions = [
     "attrs_block",
+    "colon_fence",
 ]
+
+html_static_path = ["_static"]

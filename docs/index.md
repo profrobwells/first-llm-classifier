@@ -17,7 +17,7 @@ By the end, you will understand how the new class of LLM classifiers can outperf
 
 ## Who can take it
 
-Anyone who has dabbled with code and AI is qualified for this class. A curious mind and good attitude are all that’s required.
+Anyone who has dabbled with code and AI is qualified for this class. A curious mind and good attitude are all that’s required, but a familiarity with the Python programming language will certainly come in handy.
 
 ## Table of contents
 
