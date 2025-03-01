@@ -28,7 +28,8 @@ Anyone who has dabbled with code and AI is qualified for this class. A curious m
 
 our-mission
 why-llm
-getting-started
+groq
+jupyter-desktop
 prompting-with-python
 structured-responses
 bulk-prompts
