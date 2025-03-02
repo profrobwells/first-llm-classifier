@@ -1,6 +1,8 @@
 # Prompting with Python
 
-Install the libraries we need.
+Now that you've got your Python environment set up, it's time to start writing prompts and getting responses from an LLM. We'll be using the Groq API to interact with a model, but the concepts here will apply to other LLM providers like OpenAI or Anthropic.
+
+First, we'll install the libraries we need: groq and rich.
 
 ```python
 !pip install groq rich
@@ -13,7 +15,7 @@ from rich import print
 from groq import Groq
 ```
 
-Set the API key
+Remember saving your Groq API key? Good, you'll need it now. Copy it from that text file and paste it inside the quotemarks.
 
 ```python
 api_key = "Paste your key here"
@@ -25,7 +27,7 @@ Login to Groq and save the client for reuse
 client = Groq(api_key=api_key)
 ```
 
-Make our first prompt
+Let's make our first prompt. To do that, the `role` is "user" and the `content` is our prompt. We also need to pick a model from among the choices Groq gives us. We're picking Llama 3.3, the latest from Meta. It's pretty competitive with commercial models such as ChatGPT 4 and Claude 3.
 
 ```python
 response = client.chat.completions.create(
@@ -39,7 +41,7 @@ response = client.chat.completions.create(
 )
 ```
 
-Print the response
+Our client saves the response, and now we print that Python object to see what it contains.
 
 ```python
 print(response)
@@ -81,7 +83,7 @@ data-driven storytelling.',
 )
 ```
 
-Pull out the text we actually want
+There's a lot here, but the `message` has the actual response from the LLM. Let's just print the content from that message. Note that your response probably looks a little different from this guide. That's because LLMs mostly are probablistic prediction machines, not fact machines.
 
 ```python
 print(response.choices[0].message.content)
@@ -93,7 +95,7 @@ analysis, enabling informed decision-making, and promoting transparency through 
 storytelling.
 ```
 
-Substitute in a different model for comparison. Link to Groq https://console.groq.com/docs/models
+Let's pick a different model from among [the choices that Groq offers](https://console.groq.com/docs/models). One we could try is Gemma2, an open model from Google.
 
 {emphasize-lines="8"}
 ```python
@@ -107,6 +109,8 @@ response = client.chat.completions.create(
     model="gemma2-9b-it",
 )
 ```
+
+Again, your response might vary from what's here. Let's find out.
 
 ```python
 print(response.choices[0].message.content)
@@ -138,7 +142,8 @@ print(response.content[0].text)
 ```
 :::
 
-Show how you can make a system prompt to prime the LLM. Point out we switched back to Llama.
+
+A well-structured prompt helps the LLM provide more accurate and useful responses. For instance, you can set a system prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
 
 {emphasize-lines="3-7,13"}
 ```python
@@ -158,6 +163,8 @@ response = client.chat.completions.create(
 )
 ```
 
+Check out the results.
+
 ```python
 print(response.choices[0].message.content)
 ```
@@ -168,7 +175,7 @@ patterns, expose truth, and hold those in power accountable, making it an indisp
 informed society.
 ```
 
-Change the system prompt.
+Want to see how tone affects the response? Change the system prompt to something old-school.
 
 {emphasize-lines="3-7"}
 ```python
@@ -187,6 +194,8 @@ response = client.chat.completions.create(
     model="llama-3.3-70b-versatile",
 )
 ```
+
+Then re-run the code and summon J. Jonah Jameson.
 
 ```python
 print(response.choices[0].message.content)
