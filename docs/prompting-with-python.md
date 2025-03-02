@@ -5,7 +5,7 @@ Now that you've got your Python environment set up, it's time to start writing p
 First, we'll install the libraries we need: groq and rich.
 
 ```python
-!pip install groq rich
+!pip install groq rich ipywidgets
 ```
 
 Import
