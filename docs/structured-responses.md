@@ -46,7 +46,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```plaintext
+```
 Major League Baseball (MLB)
 ```
 
@@ -71,7 +71,7 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-```plaintext
+```
 National Football League (NFL)
 ```
 

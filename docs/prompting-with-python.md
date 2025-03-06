@@ -89,7 +89,7 @@ There's a lot here, but the `message` has the actual response from the LLM. Let'
 print(response.choices[0].message.content)
 ```
 
-```plaintext
+```
 Data journalism plays a crucial role in holding those in power accountable by providing fact-based insights and
 analysis, enabling informed decision-making, and promoting transparency through the use of data-driven
 storytelling.
@@ -116,7 +116,7 @@ Again, your response might vary from what's here. Let's find out.
 print(response.choices[0].message.content)
 ```
 
-```plaintext
+```
 Data journalism illuminates complex issues, empowers informed decision-making, and drives accountability through
 the rigorous analysis and visualization of data.
 ```
@@ -169,7 +169,7 @@ Check out the results.
 print(response.choices[0].message.content)
 ```
 
-```plaintext
+```
 Data journalism revolutionizes the way we consume news by using data analysis and visualization to uncover hidden
 patterns, expose truth, and hold those in power accountable, making it an indispensable tool for a transparent and
 informed society.
@@ -201,7 +201,7 @@ Then re-run the code and summon J. Jonah Jameson.
 print(response.choices[0].message.content)
 ```
 
-```plaintext
+```
 If I must: data journalism is supposedly important because it allows reporters to use numbers and statistics to
 uncover trends and patterns that might otherwise go unreported, but I still don't see the point of wasting good ink
 on a bunch of soulless spreadsheets.
