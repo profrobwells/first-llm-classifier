@@ -1,13 +1,13 @@
-# The Groq API
+# Getting started with Groq
 
-In addition to the commercial Large Language Models we're constantly hearing about - ChatGPT, Claude, etc. - there are a number of open models that you can download and run on your computer (if you have the memory and processing capabilities). [Groq](https://groq.com/) - not to be confused with the AI called Grok released by Twitter/X - provides fast API access to those open models, including the one we'll be using for this class.
+In addition to the commercial services, like ChatGPT, that draw the most media attention, there are a number of other ways to access large-language models, including free variations that you can download and run directly on your computer.
 
-Here's how to get started with Groq: go to [groq.com](https://groq.com/) and click on the "Dev Console" button on the top right.
+For this demonstration, we will use an online service called [Groq](https://groq.com/). Not to be confused Elon Musk's Grok, which is a different AI entirely, Groq provides fast, inexpensive API access to a variety of open-source models. It is stable and speedy. Its code is similar to the what's offered by other services, so the skills you learn here should be transferable to other platforms.
 
-![Groq homepage](/_static/groq-homepage.png)
+![Groq homepage](/_static/groq.png)
 
-Create an account. I logged in with GitHub. You can do whatever you'd like. When you're logged in, click "API keys" on the top right.
+To get access to its services, go to [groq.com](https://groq.com/). Click on the "Dev Console" button on the top right.
 
-![Groq dev console](/_static/groq-devconsole.png)
+Create an account. When you're logged in, click "API keys" on the top right.
 
-Go ahead and create an API key, name it (first-llm-classifer is a good choice) and copy the API key value to your clipboard. For now, paste that API key value into a text file on your computer. We'll need it later.
+Go ahead and create an API key, name it. We think `first-llm-classifer` is a good choice. Copy the key to your clipboard. For now, paste that value into a text file on your computer. We'll need it later.
