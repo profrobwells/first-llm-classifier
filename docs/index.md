@@ -4,20 +4,21 @@ Learn how journalists use large-language models to organize and analyze massive 
 
 ## What you will learn
 
-Take this three-hour class to get hands-on experience creating a machine-learning model that can classify the text recorded in campaign contributions, crime reports, legislation, consumer complaints and other newsworthy data. An example of this would be categorizing certain kinds of expenditures or assigning a topic to legislative text.
+This class will give you hands-on experience creating a machine-learning model that can read and categorize the text recorded in newsworthy datasets
 
 It will teach you how to:
 
-* Replace a complex machine-learning system with a simple LLM system
-* Write a prompt that classifies text into predefined categories
-* Evaluate your results using a rigorous, scientific approach
-* Improve your prompt by training it with rules and examples
+* Submit large-language model prompts with the Python programming language
+* Write structured prompts that can classify text into predefined categories
+* Submit dozens of prompts at once as part of an automated routine
+* Evaluate results using a rigorous, scientific approach
+* Improve results by training the model with rules and examples
 
-By the end, you will understand how the new class of LLM classifiers can outperform traditional machine-learning methods with significantly less code, and you will be ready to write one yourself.
+By the end, you will understand how the new class of LLM classifiers can outperform traditional machine-learning methods with significantly less code. And you will be ready to write a classifier on your own.
 
 ## Who can take it
 
-Anyone who has dabbled with code and AI is qualified for this class. A curious mind and good attitude are all that’s required, but a familiarity with the Python programming language and a willingness to experiment will certainly come in handy.
+Anyone who has dabbled with code and AI is qualified for this class. A curious mind and good attitude are all that’s required, but a familiarity with Python will certainly come in handy.
 
 ## Table of contents
 
@@ -40,4 +41,4 @@ about
 
 ## About this class
 
-This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Derek Willis](https://thescoop.org/about/) for [a training session](https://schedules.ire.org/nicar-2025/index.html#2045) at the National Institute for Computer-Assisted Reporting’s 2025 conference in Minnapolis. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered text generator. The materials are available as free and [open source on GitHub](https://github.com/palewire/first-llm-classifier).
+This guide was prepared by [Ben Welsh](https://palewi.re/who-is-ben-welsh/) and [Derek Willis](https://thescoop.org/about/) for [a training session](https://schedules.ire.org/nicar-2025/index.html#2045) at the National Institute for Computer-Assisted Reporting’s 2025 conference in Minneapolis. Some of the copy was written with the assistance of GitHub's Copilot, an AI-powered text generator. The materials are available as free and [open source on GitHub](https://github.com/palewire/first-llm-classifier).
