@@ -28,7 +28,7 @@ Anyone who has dabbled with code and AI is qualified for this class. A curious m
 :numbered:
 
 our-mission
-why-llm
+llm-wtf
 groq
 jupyter-desktop
 prompting-with-python
