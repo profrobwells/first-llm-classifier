@@ -1,8 +1,10 @@
 # Bulk prompts
 
-Requesting answers one by one can take a long time. And it can end up costing you money.
+Our reusable prompting function is pretty cool. But requesting answers one by one across a big dataset could take a long time. And it can end up costing you us a pretty penny to hit the Groq API so many times.
 
-The solution is to submit your requests in batches and then get the answers back from the LLM as JSON you can parse.
+One solution is to submit your requests in batches and then get the answers back from the LLM in bulk.
+
+A common way to do that is to prompt the LLM to return its responses in JSON, a JavaScript data format that is easy to work with in Python. So, we start by adding the built-in `json` library to our imports.
 
 {emphasize-lines="1"}
 ```python
@@ -11,6 +13,19 @@ from rich import print
 from groq import Groq
 from retry import retry
 ```
+
+Next we make a series of changes to our function to adapt it to work with a batch of inputs. It's a lot.
+
+* We tweak the name of the function.
+* We change our input argument to a list.
+* We expand our prompt to explain that we are going to provide a list of team names.
+* We ask the LLM to classify them one by one, returning its answers in a JSON list.
+* We insist on getting one answer for each input.
+* We'll tweak our few shot training to reflect this new approach.
+* We submit our input as a single string with new lines separating each team name.
+* We convert the LLM's response from a string to a list using the `json.loads` function.
+* We check that the LLM's answers are in our list of acceptable answers with a loop through the list.
+* We merge the team names and the LLM's answers into a dictionary.
 
 {emphasize-lines="2,17-27,36-43,46,53-54,62-66"}
 ```python
@@ -82,11 +97,13 @@ You should return the following:
     return dict(zip(name_list, answer_list))
 ```
 
-Try that with our team list
+Try that with our team list.
 
 ```python
 classify_teams(team_list)
 ```
+
+And you'll see that it works just one, with only a single API call. The same technique a batch of any size.
 
 ```python
 {'Minnesota Twins': 'Major League Baseball (MLB)',
@@ -94,7 +111,7 @@ classify_teams(team_list)
  'Minnesota Timberwolves': 'National Basketball Association (NBA)'}
 ```
 
-One common problem is that your number of inputs can fail to match your number of inputs when you have a large batch.
+Though, as you batches get bigger, one common problem is that your number of inputs can fail to match your number of inputs. This problem may lessen as LLMs improve, but for now it's a good idea to limit to batches to a few dozen inputs and to verify that you're getting the right number back.
 
 {emphasize-lines="66-69"}
 ```python
@@ -171,12 +188,17 @@ You should return the following:
     return dict(zip(name_list, answer_list))
 ```
 
+Okay. Naming sports teams is a cute trick, but what about something hard. And whatever happened to that George Santos idea?
 
-Now let's get some real data out.
+We'll take that on by pulling in our example dataset using `pandas`, a popular data manipulation library in Python.
 
-```
+First we need to install it.
+
+```text
 !pip install groq rich ipywidgets retry pandas
 ```
+
+Then import it.
 
 {emphasize-lines="5"}
 ```python
@@ -187,15 +209,19 @@ from retry import retry
 import pandas as pd
 ```
 
+Now we're ready to load the California expenditures data prepared for the class. It contains the distinct list of all vendors listed as payees in itemized receipts attached to disclosure filings over the past 25 years.
+
 ```python
 df = pd.read_csv("https://raw.githubusercontent.com/palewire/first-llm-classifier/refs/heads/main/_notebooks/Form460ScheduleESubItem.csv")
 ```
+
+Have a look at a random sample to get a taste of what's in there.
 
 ```python
 df.sample(10)
 ```
 
-Let's adapt what we have to match...
+Now let's adapt what we have to fit. Instead of asking for a sports league back, we will ask the LLM to classify each payee as a restaurant, bar, hotel or other.
 
 {emphasize-lines="2-26,33-48,61-66"}
 ```python
@@ -277,29 +303,41 @@ Ensure that the number of classifications in your output matches the number of b
     return dict(zip(name_list, answer_list))
 ```
 
+Now pull out a random sample of payees as a list.
+
 ```python
 sample_list = list(df.sample(10).payee)
 ```
 
-```python
-classify_payees(sample_list)
-```
+And see how it does.
 
 ```python
-... example output here ...
+{'ARCLIGHT CINEMAS': 'Other',
+ '99 CENTS ONLY': 'Other',
+ 'COMMONWEALTH COMMUNICATIONS': 'Other',
+ 'CHILBO MYUNOK': 'Other',
+ 'ADAM SCHIFF FOR SENATE': 'Other',
+ 'CENTER FOR CREATIVE FUNDING': 'Other',
+ 'JOE SHAW FOR HUNTINGTON BEACH CITY COUNCIL 2014': 'Other',
+ "MULVANEY'S BUILDING & LOAN": 'Other',
+ 'ATV VIDEO CENTER': 'Other',
+ 'HYATT REGENCY SAN FRANCISCO': 'Hotel'}
 ```
 
-Break out bigger dataset into batches
+That's nice for a sample. But how you loop through the entire dataset and code them.
+
+One way to start is to write a function that will split up a big list of lists.
 
 ```python
 def get_batch_list(li, n=10):
+    """Split the provided list into batches of size `n`."""
     batch_list = []
     for i in range(0, len(li), n):
         batch_list.append(li[i : i + n])
     return batch_list
 ```
 
-Write a function that will split up a big list and classify it batch by batch.
+Before we loop through them, let's add a couple libraries that will let us avoid hammering Groq and keep tabs on our progress.
 
 {emphasize-lines="1,4"}
 ```python
@@ -312,6 +350,7 @@ from retry import retry
 import pandas as pd
 ```
 
+That can then be fit into a new function that will accept a list of payees and classify them batch by batch
 
 ```python
 def classify_batches(name_list, batch_size=10, wait=2):
@@ -334,15 +373,21 @@ def classify_batches(name_list, batch_size=10, wait=2):
     return all_results
 ```
 
+Now, let's take out a bigger sample.
+
 ```python
 bigger_sample = list(df.sample(100).payee)
 ```
+
+And let it rip.
 
 ```python
 classify_batches(bigger_sample)
 ```
 
-We can make the result a dataframe
+Printing out to the console is interesting, but eventually you'll want to be able to work with the results in a more structured way. So let's convert the results into a `pandas` DataFrame by modifying our function.
+
+```python
 
 {emphasize-lines="18-21"}
 ```python
@@ -369,14 +414,20 @@ def classify_batches(name_list, batch_size=10, wait=2):
     )
 ```
 
+That dataframe can be stored in a variable.
+
 ```python
 results_df = classify_batches(bigger_sample)
 ```
+
+And then inspected using the standard pandas tools. Like a peek at the first records:
 
 ```python
 results_df.head()
 ```
 
+Or a sum of all the categories.
+
 ```python
-results_df.value_counts()
+results_df.categories.value_counts()
 ```
