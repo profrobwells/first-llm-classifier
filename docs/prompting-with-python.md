@@ -1,33 +1,35 @@
 # Prompting with Python
 
-Now that you've got your Python environment set up, it's time to start writing prompts and getting responses from an LLM. We'll be using the Groq API to interact with a model, but the concepts here will apply to other LLM providers like OpenAI or Anthropic.
+Now that you've got your Python environment set up, it's time to start writing prompts and getting responses from a Groq.
 
-First, we'll install the libraries we need: groq and rich.
+First, we'll install the libraries we need. The `groq` package is the official client for Groq's API. The `rich` and `ipywidgets` packages are helper libraries that will improve how your outputs look in Jupyter notebooks.
 
 ```python
 !pip install groq rich ipywidgets
 ```
 
-Import
+Now lets import them in the next cell.
 
 ```python
 from rich import print
 from groq import Groq
 ```
 
-Remember saving your Groq API key? Good, you'll need it now. Copy it from that text file and paste it inside the quotemarks.
+Remember saving your Groq API key? Good. You'll need it now. Copy it from that text file and paste it inside the quotemarks as variable.
 
 ```python
 api_key = "Paste your key here"
 ```
 
-Login to Groq and save the client for reuse
+Login to Groq and save the client for reuse when we call the API.
 
 ```python
 client = Groq(api_key=api_key)
 ```
 
-Let's make our first prompt. To do that, the `role` is "user" and the `content` is our prompt. We also need to pick a model from among the choices Groq gives us. We're picking Llama 3.3, the latest from Meta. It's pretty competitive with commercial models such as ChatGPT 4 and Claude 3.
+Let's make our first prompt. To do that, we submit a dictionary to Groq's `chat.completions.create` method. The dictionary has a `messages` key that contains a list of dictionaries. Each dictionary in the list represents a message in the conversation. When the `role` is "user" it is roughly the same as asking a question to a chatbot.
+
+We also need to pick a model from [among the choices Groq gives us](https://console.groq.com/docs/models). We're picking Llama 3.3, the latest from Meta.
 
 ```python
 response = client.chat.completions.create(
@@ -41,11 +43,13 @@ response = client.chat.completions.create(
 )
 ```
 
-Our client saves the response, and now we print that Python object to see what it contains.
+Our client saves the response as a variable. Print that Python object to see what it contains.
 
 ```python
 print(response)
 ```
+
+You should see something like:
 
 ```python
 ChatCompletion(
@@ -83,13 +87,13 @@ data-driven storytelling.',
 )
 ```
 
-There's a lot here, but the `message` has the actual response from the LLM. Let's just print the content from that message. Note that your response probably looks a little different from this guide. That's because LLMs mostly are probablistic prediction machines, not fact machines.
+There's a lot here, but the `message` has the actual response from the LLM. Let's just print the content from that message. Note that your response probably varies from this guide. That's because LLMs mostly are probablistic prediction machines. Every response can be a little different.
 
 ```python
 print(response.choices[0].message.content)
 ```
 
-```
+```text
 Data journalism plays a crucial role in holding those in power accountable by providing fact-based insights and
 analysis, enabling informed decision-making, and promoting transparency through the use of data-driven
 storytelling.
@@ -116,7 +120,7 @@ Again, your response might vary from what's here. Let's find out.
 print(response.choices[0].message.content)
 ```
 
-```
+```text
 Data journalism illuminates complex issues, empowers informed decision-making, and drives accountability through
 the rigorous analysis and visualization of data.
 ```
@@ -143,7 +147,9 @@ print(response.content[0].text)
 :::
 
 
-A well-structured prompt helps the LLM provide more accurate and useful responses. For instance, you can set a system prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
+A well-structured prompt helps the LLM provide more accurate and useful responses.
+
+One common technique to improve results is open with a "system" prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
 
 {emphasize-lines="3-7,13"}
 ```python
@@ -151,8 +157,7 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "system",
-            "content": "you are an enthusiastic nerd who believes data journalism is the future."
-
+            "content": "you are a crusty, ill-tempered editor who hates math and thinks data journalism is a waste of time and resources."
         },
         {
             "role": "user",
@@ -169,7 +174,7 @@ Check out the results.
 print(response.choices[0].message.content)
 ```
 
-```
+```text
 Data journalism revolutionizes the way we consume news by using data analysis and visualization to uncover hidden
 patterns, expose truth, and hold those in power accountable, making it an indispensable tool for a transparent and
 informed society.
@@ -201,7 +206,7 @@ Then re-run the code and summon J. Jonah Jameson.
 print(response.choices[0].message.content)
 ```
 
-```
+```text
 If I must: data journalism is supposedly important because it allows reporters to use numbers and statistics to
 uncover trends and patterns that might otherwise go unreported, but I still don't see the point of wasting good ink
 on a bunch of soulless spreadsheets.
