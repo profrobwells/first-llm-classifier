@@ -1,6 +1,12 @@
 # Structured responses
 
-You don't have to ask for essays, poems or chitchat. You can ask an LLM to make very simple decisions and code data.
+Here's a public service announcement. You don't have to ask LLMs for essays, poems or chitchat.
+
+Yes, they're great at drumming up long blocks of text. An LLM can write a long argument to answer almost any question. 
+
+But they're also great at answering simple questions, a skill that has been overlooked in much of the hoopla that followed the introduction of ChatGPT.
+
+Here's a example that simply prompts the LLM to answer a straightforward question.
 
 ```python
 prompt = """
@@ -11,6 +17,8 @@ I will provide the name of a professional sports team.
 You will reply with the sports league in which they compete.
 """
 ```
+
+Lace that into our request.
 
 {emphasize-lines="5"}
 ```python
@@ -24,6 +32,8 @@ response = client.chat.completions.create(
     model="llama-3.3-70b-versatile",
 )
 ```
+
+And now add a user message that provides the name of a professional sports team.
 
 {emphasize-lines="7-10"}
 ```python
@@ -42,13 +52,19 @@ response = client.chat.completions.create(
 )
 ```
 
+Check the response.
+
 ```python
 print(response.choices[0].message.content)
 ```
 
+And we'll bet you get the right answer.
+
 ```
 Major League Baseball (MLB)
 ```
+
+Try another one.
 
 {emphasize-lines="9"}
 ```python
@@ -71,11 +87,15 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
+See what we mean?
+
 ```
 National Football League (NFL)
 ```
 
-You can make a function to loop through a dataset and ask the LLM to code them one by one.
+This approach can be use to classify large datasets, adding a new column of data that categories text in a way that makes it easier to analyze.
+
+Let's try it by making a function that will classify whatever team you provide.
 
 ```python
 def classify_team(name):
@@ -104,14 +124,18 @@ You will reply with the sports league in which they compete.
     return response.choices[0].message.content
 ```
 
+A list of teams.
+
 ```python
 team_list = ["Minnesota Twins", "Minnesota Vikings", "Minnesota Timberwolves"]
 ```
 
+Now, loop through the list and ask the LLM to code them one by one.
+
 ```python
 for team in team_list:
     league = classify_team(team)
-    print(team, league)
+    print([team, league])
 ```
 
 ```python
@@ -120,7 +144,7 @@ for team in team_list:
 ['Minnesota Timberwolves', 'National Basketball Association (NBA)']
 ```
 
-Sometimes the LLM will get weird and return something you don't want. You can improve this be adding validation.
+Due its probabilistic nature, the LLM can sometimes get creative get weird and return something you don't want. You can improve this be adding a validation system that will only accept responses from a pre-defined list.
 
 {emphasize-lines="9-12,31-37"}
 ```python
@@ -165,15 +189,17 @@ Your responses must come from the following list:
     return answer
 ```
 
+Now, ask it for a team that's not in one of those leagues.
+
 ```python
-classify_team("Indiana Fever")
+classify_team("Minnesota Wild")
 ```
 
 ```python
 ---------------------------------------------------------------------------
 ValueError                                Traceback (most recent call last)
 Cell In[47], line 1
-----> 1 classify_team("Indiana Fever")
+----> 1 classify_team("Minnesota Wild")
 
 Cell In[45], line 36, in classify_team(name)
      30 acceptable_answers = [
@@ -185,10 +211,9 @@ Cell In[45], line 36, in classify_team(name)
 ---> 36     raise ValueError(f"{answer} not in list of acceptable answers")
      38 return answer
 
-ValueError: Women's National Basketball Association (WNBA)
+ValueError: National Hockey League (NHL)
 
-However, since WNBA isn't an option and considering the context of other options provided and the most relevant one, I will classify it as:
-National Basketball Association (NBA) isn't correct, though, a more accurate answer would be the WNBA. not in list of acceptable answers
+However, since NHL is not in the provided list, I must inform you that the Minnesota Wild does not belong to any of the leagues mentioned (MLB, NFL, NBA). not in list of acceptable answers
 ```
 
 Sometimes there just isn't answer in your validation list. One way to manage that is to allow an "other" category.
@@ -239,16 +264,19 @@ If the team's league is not on the list, you should label them as "Other".
     return answer
 ```
 
+Now try the Minnesota Wild again.
+
 ```python
-classify_team("Indiana Fever")
+classify_team("Minnesota Wild")
 ```
+
+And you'll get the answer you expect.
 
 ```python
 'Other'
 ```
 
-Sometimes the LLM just gets too creative. For poems and essays, this is great. For structured responses, not so much. You can dial it down and ask the LLM to be straightforward and consistent by reducing its temperature setting to zero.
-
+Most LLMs are pre-programmed to be creative and generate a wide range of responses. For structured responses like this, we don't want that all. We want consistency. So it's a good idea to ask the LLM to be more straightforward by reducing a creativity setting known as `temperature` to zero.
 
 {emphasize-lines="29"}
 ```python
@@ -297,7 +325,7 @@ If the team's league is not on the list, you should label them as "Other".
     return answer
 ```
 
-You can also increase reliability by priming the LLM with examples of the type of response you want. This technique is called "few-shot prompting".
+You can also increase reliability by priming the LLM with examples of the type of response you want. This technique is called ["few shot prompting"](https://www.ibm.com/think/topics/few-shot-prompting). Here's how it's done:
 
 {emphasize-lines="23-54"}
 ```python
@@ -378,11 +406,15 @@ If the team's league is not on the list, you should label them as "Other".
     return answer
 ```
 
-You can also ask the function to automatically retry if it doesn't get a valid response.
+You can also ask the function to automatically retry if it doesn't get a valid response. This will give the LLM a second chance to get it right in cases where it gets too creative.
 
-```
+To do that, we'll return installation step and in the `retry` package.
+
+```text
 !pip install groq rich ipywidgets retry
 ```
+
+Now import the `retry` package.
 
 {emphasize-lines="3"}
 ```python
@@ -390,6 +422,8 @@ from rich import print
 from groq import Groq
 from retry import retry
 ```
+
+And add the `retry` decorator to the function that will catch the `ValueError` exception and try again, as many times as you specify.
 
 {emphasize-lines="1"}
 ```python
