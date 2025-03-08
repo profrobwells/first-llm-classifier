@@ -223,6 +223,20 @@ Have a look at a random sample to get a taste of what's in there.
 df.sample(10)
 ```
 
+```python
+payee
+10292	NICK & STEF'S
+13392	SPIKE TV
+4705	EQUALITY FOR ALL - NO ON 8
+1037	ATLANTA BOOK SELLERS
+11716	QUICK MESSENGER SERVICE
+12365	RUBIOS MEXICAN GRILL
+7761	KIMBERLY A. AGUIRRE
+223	ACCUZIP, INC.
+19	2000 COPIER & FAX, INC.
+7989	KOZT
+```
+
 Now let's adapt what we have to fit. Instead of asking for a sports league back, we will ask the LLM to classify each payee as a restaurant, bar, hotel or other.
 
 {emphasize-lines="2-26,33-48,61-66"}
@@ -356,7 +370,8 @@ That can then be fit into a new function that will accept a list of payees and c
 
 ```python
 def classify_batches(name_list, batch_size=10, wait=2):
-    # Store the results
+    """Split the provided list of names into batches and classify with our LLM them one by one."""
+    # Create a place to store the results
     all_results = {}
 
     # Batch up the list
@@ -364,11 +379,13 @@ def classify_batches(name_list, batch_size=10, wait=2):
 
     # Loop through the list in batches
     for batch in track(batch_list):
-        # Classify it
+        # Classify it with the LLM
         batch_results = classify_payees(batch)
-        # Add it to the results
+
+        # Add what we get back to the results
         all_results.update(batch_results)
-        # Tap the brakes
+
+        # Tap the brakes to avoid overloading groq's API
         time.sleep(wait)
 
     # Return the results
