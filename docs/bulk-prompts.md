@@ -1,8 +1,8 @@
 # Bulk prompts
 
-Our reusable prompting function is pretty cool. But requesting answers one by one across a big dataset could take a long time. And it could cost us money to hit the Groq API so many times.
+Our reusable prompting function is pretty cool. But requesting answers one by one across a big dataset could take forever. And it could cost us money to hit the Groq API so many times.
 
-One solution is to submit your requests in batches and then get the answers back from the LLM in bulk.
+One solution is to submit your requests in batches and then ask the LLM to return its responses in bulk.
 
 A common way to do that is to prompt the LLM to return its responses in JSON, a JavaScript data format that is easy to work with in Python. So, we start by adding the built-in `json` library to our imports.
 
