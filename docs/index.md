@@ -4,7 +4,7 @@ Learn how journalists use large-language models to organize and analyze massive 
 
 ## What you will learn
 
-This class will give you hands-on experience creating a machine-learning model that can read and categorize the text recorded in newsworthy datasets
+This class will give you hands-on experience creating a machine-learning model that can read and categorize the text recorded in newsworthy datasets.
 
 It will teach you how to:
 
@@ -14,7 +14,7 @@ It will teach you how to:
 * Evaluate results using a rigorous, scientific approach
 * Improve results by training the model with rules and examples
 
-By the end, you will understand how the new class of LLM classifiers can outperform traditional machine-learning methods with significantly less code. And you will be ready to write a classifier on your own.
+By the end, you will understand how LLM classifiers can outperform traditional machine-learning methods with significantly less code. And you will be ready to write a classifier on your own.
 
 ## Who can take it
 
