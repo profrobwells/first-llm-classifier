@@ -27,7 +27,7 @@ Next, we make a series of changes to our function to adapt it to work with a bat
 * We submit our input as a single string with new lines separating each team name.
 * We convert the LLM's response from a string to a list using the `json.loads` function.
 * We check that the LLM's answers are in our list of acceptable answers with a loop through the list.
-* We merge the team names and the LLM's answers into a dictionary.
+* We merge the team names and the LLM's answers into a dictionary that's returned by the function.
 
 {emphasize-lines="2,17-27,36-43,46,53-54,62-66"}
 ```python
