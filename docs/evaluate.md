@@ -1,19 +1,31 @@
 # Evaluation
 
-Explain how traditional ML and all this stuff has historically been trained and evaluated with "supervised learning" and how this is not the case with LLMs. Point out that we can still evaluate LLMs using the same tools. And then compare how this approach compares to the "old school" approach.
+Before the advent of large-language models, machine-learning systems were trained using a technique called [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning). This approach required users to provide carefully prepared training data that showed the computer what was expected.
 
-Output a sample.
+For instance, if you were developing a model to distinguish spam emails from legitimate ones, you would need to provide the model with a set of spam emails and another set of legitimate emails. The model would then use that data to learn the patterns and relationships between the inputs and outputs.
+
+In addition to training the model, the curated input would be used to evaluate its performance. This process typically involved splitting the supervised data into two sets: one for training and one for testing. The model could then be evaluated using a separate set of supervised data to determine how well it performed by ensuring it could generalize to new data, not just memorize the examples it had been fed during training.
+
+Large-language models operate differently. They are trained on vast amounts of text and can generate responses based on the patterns and relationships they learn through various approaches. The result is that they can be used to perform a wide range of tasks without requiring supervised data to be prepared beforehand.
+
+This is a significant advantage. However, it also raises questions about evaluating an LLM prompt’s performance. If we don’t test its results, how do we know if it’s doing a good job? How can we improve if we can’t see where it gets things wrong?
+
+In the final chapters, we will show how traditional supervision can still play a vital role in evaluating and improving an LLM prompt.
+
+Start by outputting a random sample from the dataset to a file of comma-separated values. It will serve as our supervised sample. In general, the larger the sample, the better the evaluation, but at a certain point, the returns diminish. For this exercise, we will use a sample of 250 records.
 
 ```python
 df.sample(250).to_csv("./sample.csv", index=False)
 ```
 
-Show a screenshot of how I manually coded them.
+Now, you can download the file and inspect it in a spreadsheet program like Excel or Google Sheets. For each payee in the sample, you provide the correct category in a companion column. These decisions are then used to evalute the LLM's performance.
 
-Now we read it back in.
+![Sample](_static/sample.png)
+
+To speed the class along, we've already prepared a sample for you in [the class repository](https://github.com/palewire/first-llm-classifier). Our next step is to read it back into a DataFrame.
 
 ```python
-sample_df = pd.read_csv("./sample.csv")
+sample_df = pd.read_csv("https://raw.githubusercontent.com/palewire/first-llm-classifier/refs/heads/main/_notebooks/sample.csv")
 ```
 
 We need to install a bunch of packages.
