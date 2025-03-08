@@ -223,7 +223,7 @@ Have a look at a random sample to get a taste of what's in there.
 df.sample(10)
 ```
 
-```python
+```
 payee
 10292	NICK & STEF'S
 13392	SPIKE TV
@@ -445,8 +445,26 @@ And then inspected using the standard pandas tools. Like a peek at the first rec
 results_df.head()
 ```
 
+```
+payee	category
+0	CARROW'S RESTAURANT	Restaurant
+1	TUSCAN STEAK	Restaurant
+2	ORANGE POST OFFICE	Other
+3	RCC, INC.	Other
+4	THE MISSION INN HOTEL & SPA	Hotel
+```
+
 Or a sum of all the categories.
 
 ```python
 results_df.categories.value_counts()
+```
+
+```
+category
+Other         65
+Restaurant    19
+Hotel         13
+Bar            3
+Name: count, dtype: int64
 ```
