@@ -4,7 +4,9 @@ Our reusable prompting function is pretty cool. But requesting answers one by on
 
 One solution is to submit your requests in batches and then ask the LLM to return its responses in bulk.
 
-A common way to do that is to prompt the LLM to return its responses in JSON, a JavaScript data format that is easy to work with in Python. So, we start by adding the built-in `json` library to our imports.
+A common way to do that is to prompt the LLM to return its responses in JSON, a JavaScript data format that is easy to work with in Python. 
+
+To try that, we start by adding the built-in `json` library to our imports.
 
 {emphasize-lines="1"}
 ```python
@@ -14,7 +16,7 @@ from groq import Groq
 from retry import retry
 ```
 
-Next we make a series of changes to our function to adapt it to work with a batch of inputs. It's a lot.
+Next, we make a series of changes to our function to adapt it to work with a batch of inputs. Get ready. It's a lot.
 
 * We tweak the name of the function.
 * We change our input argument to a list.
