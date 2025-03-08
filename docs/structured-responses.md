@@ -411,7 +411,7 @@ You can also ask the function to automatically retry if it doesn't get a valid r
 To do that, we'll return installation step and in the `retry` package.
 
 ```text
-!pip install groq rich ipywidgets retry
+%pip install groq rich ipywidgets retry
 ```
 
 Now import the `retry` package.

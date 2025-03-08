@@ -195,7 +195,7 @@ We'll take that on by pulling in our example dataset using `pandas`, a popular d
 First we need to install it.
 
 ```text
-!pip install groq rich ipywidgets retry pandas
+%pip install groq rich ipywidgets retry pandas
 ```
 
 Then import it.

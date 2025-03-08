@@ -4,9 +4,15 @@ Now that you've got your Python environment set up, it's time to start writing p
 
 First, we'll install the libraries we need. The `groq` package is the official client for Groq's API. The `rich` and `ipywidgets` packages are helper libraries that will improve how your outputs look in Jupyter notebooks.
 
+A common way to install packages from inside your JupyterLab Desktop notebook is to use the `!pip` command.
+
 ```text
-!pip install groq rich ipywidgets
+%pip install groq rich ipywidgets
 ```
+
+:::{admonition} Note
+If the `%pip` command doesn't work on your computer, try substituting the `!pip` command instead. Or you can install the packages from the command line on your computer and restart your notebook.
+:::
 
 Now lets import them in the next cell.
 
