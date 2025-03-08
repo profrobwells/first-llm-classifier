@@ -28,14 +28,15 @@ To speed the class along, we've already prepared a sample for you in [the class 
 sample_df = pd.read_csv("https://raw.githubusercontent.com/palewire/first-llm-classifier/refs/heads/main/_notebooks/sample.csv")
 ```
 
-We need to install a bunch of packages.
+Next, we'll install the Python packages `scikit-learn`, `matplotlib`, and `seaborn`. Prior to LLMs, these libraries were the go-to tools for training and evaluating machine-learning models.
+
+Return to the Jupyter notebook and install the packages alongside our other dependencies.
 
 ```
 !pip install groq rich ipywidgets retry pandas scikit-learn matplotlib seaborn
 ```
 
-There's one very important tool ...
-
+Add the `test_train_split` function from `scikit-learn` to the import statement.
 
 {emphasize-lines="6"}
 ```python
@@ -47,25 +48,32 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 ```
 
+This tool is used to split a supervised sample into two sets: one for training and one for testing. The model is trained on the training set and then evaluated on the test set.
+
+The first input is the DataFrame column containing our supervised payees. The second input is the DataFrame column containing the correct categories.
+
+The `test_size` parameter determines the proportion of the sample that will be used for testing. The `random_state` parameter ensures that the split is reproducible by setting a seed for the random number generator that draws the samples.
 
 ```python
 training_input, test_input, training_output, test_output = train_test_split(
     sample_df[['payee']],
     sample_df['category'],
     test_size=0.33,
-    random_state=42,
+    random_state=42, # Remember Jackie Robinson. Remember Douglas Adams.
 )
 ```
 
-Give the test set to the LLM.
+In a traditional training setup, the next step would be to train a machine-learning model in `sklearn` using the `training_input` and `training_output` sets. The model would then be evaluated using the `test_input` and `test_output` sets.
+
+However, with the LLM we can skip ahead to the testing phase. We can pass the `test_input` set our LLM prompt and compare the results to the right answers found in `test_output` set.
+
+All that requires is that we pass the `payee` column from our test_input DataFrame to the function we created in the previous chapters.
 
 ```python
 llm_df = classify_batches(list(test_input.payee))
 ```
 
-```python
-llm_df.category.value_counts()
-```
+Next, we import the `classification_report` and `confusion_matrix` functions from `sklearn`, which are used to evaluate a model's performance. We'll also pull in `seaborn` and `matplotlib` to visualize the results.
 
 {emphasize-lines="6-7,9"}
 ```python
@@ -80,26 +88,44 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix, classification_report
 ```
 
+The `classification_report` function generated a report card on a model's performance. You provide it with the correct answers in the `test_output` set and the model's predictions in your prompt's DataFrame. In this case, our LLM's predictions are stored in the `llm_df` DataFrame's `category` column.
+
 ```python
-print(classification_report(
-    test_output,
-    llm_df.category,
-    zero_division=False,
-))
+print(classification_report(test_output, llm_df.category))
 ```
 
-<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">              precision    recall  f1-score   support
+That will output a report that looks something like this:
 
-         Bar       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.00</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.00</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1.00</span>         <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>
-       Hotel       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.89</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.80</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.84</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>
-       Other       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.96</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.96</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.96</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57</span>
-  Restaurant       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.87</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.93</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.90</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span>
+```
+              precision    recall  f1-score   support
 
-    accuracy                           <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.94</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">83</span>
-   macro avg       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.93</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.92</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.93</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">83</span>
-weighted avg       <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.94</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.94</span>      <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">0.94</span>        <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">83</span>
+         Bar       1.00      1.00      1.00         2
+       Hotel       0.89      0.80      0.84        10
+       Other       0.96      0.96      0.96        57
+  Restaurant       0.87      0.93      0.90        14
 
-</pre>
+    accuracy                           0.94        83
+   macro avg       0.93      0.92      0.93        83
+weighted avg       0.94      0.94      0.94        83
+```
+
+At first, the report can be a bit overwhelming. What are all these technical terms?
+
+Precision measures what statistics nerds call "positive predictive value." It's how often the model made the correct decision when it applied a category. For instance, in the "Bar" category, the LLM correctly predicted both of the bars in our supervised sample. That's a precision of 1.00. An analogy here a baseball player's contact rate. Precision is a measure of how often the model connects with the ball when it swings its bat.
+
+Recall measures how many of the supervised instances were correctly predicted by the model. In this case, it shows that the LLM correctly predicted 80% of the hotels in our manual sample.
+
+The f1-score is a combination of precision and recall. It's a way to measure a model's overall performance by balancing the two.
+
+The support column shows how many instances of each category were in the supervised sample.
+
+The averages at the bottom combine the results for all categories. The macro row is a simple average of the precision, recall and f1-score. The weighted row is a weighted average based on the number of instances in each category.
+
+In the example result provided above, we can see that the LLM was guessing correctly more than 90% of the time, which ever way you slice it.
+
+Another technique for evaluating classifiers is to visualize the results using a chart known as a confusion matrix. This chart shows how often the model correctly predicted each category and where it got things wrong.
+
+Drawing up one requires the `confusion_matrix` function from `sklearn` and the an embarassing mess of code from `seaborn` and `matplotlib` libraries. Most of the code is boilerplate, but you need to provide your test and LLM outputs, as well as the proper labels for the categories, is a few picky places.
 
 ```python
 conf_mat = confusion_matrix(test_output, llm_df.category, labels=llm_df.category.unique())
@@ -117,7 +143,14 @@ plt.xlabel('Predicted')
 
 ![confusion matrix](_static/matrix-llm.png)
 
-Now lets compare those results against the "old school" approach where the supervised sample is used to train machine-learning model that doesn't have access to the vast corpus of knowledge crammed into an LLM.
+The diagonal line of cells running from the upper left to the lower right shows where the mdoel correctly predicted the category. The off-diagonal cells show where it got things wrong. The size of the cells indicates how often the model made that mistake. For instance, we can see that one miscategorized hotel in the sample was predicted to be a restaurant and the second was predicted to be "other."
+
+Due to the inherent randomness in the LLM's predictions, it's a good idea to test your sample and run these reports multiple times to get a sense of the model's performance. 
+
+Before we look at how you might improve the LLM's performance, let's take a moment to compare the results of this evaluation against the old school approach where the supervised sample is used to train a machine-learning model that doesn't have access to the vast corpus of knowledge crammed into an LLM.
+
+This will require importing a mess of `sklearn` functions and classes. We'll use a `TfidfVectorizer` to convert the payee text into a numerical representation that can be used by a `LinearSVC` classifier. We'll then use a `Pipeline` to chain the two together. If you have no idea, what any of that means, don't worry. Now that we have LLMs in this world, you might never need to learn.
+
 
 {emphasize-lines="10-13"}
 ```python
@@ -135,6 +168,10 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer
 ```
+
+Here's a simple example of how you might train and evaluate a traditional machine-learning model using the supervised sample.
+
+First you setup all the machinery.
 
 ```python
 vectorizer = TfidfVectorizer(
@@ -157,14 +194,51 @@ pipeline = Pipeline([
 ])
 ```
 
+Then you train the model using those training sets we split out at the start.
+
 ```python
 model = pipeline.fit(training_input, training_output)
 ```
+
+And finally, you ask the model to use its training to predict the right answers for the test set.
 
 ```python
 predictions = model.predict(test_input)
 ```
 
-Get a classification report in
+Now, you can run the same evaluation code as before to see how the traditional model performed.
 
-Get a confusion report in
+```python
+print(classification_report(test_output, predictions))
+```
+
+```
+              precision    recall  f1-score   support
+
+         Bar       0.00      0.00      0.00         2
+       Hotel       1.00      0.27      0.43        10
+       Other       0.75      1.00      0.85        57
+  Restaurant       0.80      0.29      0.42        14
+
+    accuracy                           0.76        83
+   macro avg       0.64      0.39      0.43        83
+weighted avg       0.77      0.76      0.70        83
+```
+
+```python
+conf_mat = confusion_matrix(test_output, llm_df.category, labels=llm_df.category.unique())
+fig, ax = plt.subplots(figsize=(5,5))
+sns.heatmap(
+    conf_mat,
+    annot=True,
+    fmt='d',
+    xticklabels=llm_df.category.unique(),
+    yticklabels=llm_df.category.unique()
+)
+plt.ylabel('Actual')
+plt.xlabel('Predicted')
+```
+
+![confusion matrix](_static/matrix-ml.png)
+
+Not great. The traditional model is guessing correctly about 75% of the time, but it's missing most cases of our "bar", "hotel" and "restaurant" categories with almost everything getting filed as "other." The LLM, on the other hand, is guessing correctly more than 90% of the time and flagging many of the rare categories that we're seeking to find in the haystack of others.
