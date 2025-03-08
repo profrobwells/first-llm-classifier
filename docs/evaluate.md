@@ -1,4 +1,4 @@
-# Evaluation
+# Evaluating prompts
 
 Before the advent of large-language models, machine-learning systems were trained using a technique called [supervised learning](https://en.wikipedia.org/wiki/Supervised_learning). This approach required users to provide carefully prepared training data that showed the computer what was expected.
 
