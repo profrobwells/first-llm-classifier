@@ -2,7 +2,7 @@
 
 Here's a public service announcement. There's no law that says you have to ask LLMs for essays, poems or chitchat.
 
-Yes, they're great at drumming up long blocks of text. An LLM can spit out a long answer almost any question. It's how they've been marketed by companies selling chatbots and more conversational forms of search.
+Yes, they're great at drumming up long blocks of text. An LLM can spit out a long answer to almost any question. It's how they've been marketed by companies selling chatbots and more conversational forms of search.
 
 But they're also great at answering simple questions, a skill that has been overlooked in much of the hoopla that followed the introduction of ChatGPT.
 
