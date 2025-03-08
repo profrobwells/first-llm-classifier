@@ -1,6 +1,6 @@
 # Bulk prompts
 
-Our reusable prompting function is pretty cool. But requesting answers one by one across a big dataset could take a long time. And it can end up costing you us a pretty penny to hit the Groq API so many times.
+Our reusable prompting function is pretty cool. But requesting answers one by one across a big dataset could take a long time. And it could cost us money to hit the Groq API so many times.
 
 One solution is to submit your requests in batches and then get the answers back from the LLM in bulk.
 
@@ -21,7 +21,7 @@ Next we make a series of changes to our function to adapt it to work with a batc
 * We expand our prompt to explain that we are going to provide a list of team names.
 * We ask the LLM to classify them one by one, returning its answers in a JSON list.
 * We insist on getting one answer for each input.
-* We'll tweak our few shot training to reflect this new approach.
+* We tweak our few shot training to reflect this new approach.
 * We submit our input as a single string with new lines separating each team name.
 * We convert the LLM's response from a string to a list using the `json.loads` function.
 * We check that the LLM's answers are in our list of acceptable answers with a loop through the list.
