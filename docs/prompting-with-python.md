@@ -107,7 +107,7 @@ storytelling.
 
 Let's pick a different model from among [the choices that Groq offers](https://console.groq.com/docs/models). One we could try is Gemma2, an open model from Google.
 
-{emphasize-lines="8"}
+{emphasize-lines="7"}
 ```python
 response = client.chat.completions.create(
     messages=[
