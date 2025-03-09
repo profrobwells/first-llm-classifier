@@ -33,7 +33,7 @@ Next, we'll install the Python packages `scikit-learn`, `matplotlib`, and `seabo
 Return to the Jupyter notebook and install the packages alongside our other dependencies.
 
 ```
-!pip install groq rich ipywidgets retry pandas scikit-learn matplotlib seaborn
+%pip install groq rich ipywidgets retry pandas scikit-learn matplotlib seaborn
 ```
 
 Add the `test_train_split` function from `scikit-learn` to the import statement.
