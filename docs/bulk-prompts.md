@@ -410,8 +410,6 @@ classify_batches(bigger_sample)
 
 Printing out to the console is interesting, but eventually you'll want to be able to work with the results in a more structured way. So let's convert the results into a `pandas` DataFrame by modifying our function.
 
-```python
-
 {emphasize-lines="18-21"}
 ```python
 def classify_batches(name_list, batch_size=10, wait=2):
