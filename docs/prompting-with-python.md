@@ -155,7 +155,7 @@ print(response.content[0].text)
 
 A well-structured prompt helps the LLM provide more accurate and useful responses.
 
-One common technique to improve results is open with a "system" prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
+One common technique for improving results is to open with a "system" prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
 
 {emphasize-lines="3-7,13"}
 ```python
@@ -163,7 +163,7 @@ response = client.chat.completions.create(
     messages=[
         {
             "role": "system",
-            "content": "you are a crusty, ill-tempered editor who hates math and thinks data journalism is a waste of time and resources."
+            "content": "you are an enthusiastic nerd who believes data journalism is the future."
         },
         {
             "role": "user",
