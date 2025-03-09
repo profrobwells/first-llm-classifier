@@ -22,7 +22,7 @@ It wasn’t until after his 2022 election to Congress that [journalists discover
 
 [![Santos story](_static/santos.png)](https://www.nytimes.com/2022/12/29/nyregion/george-santos-campaign-finance.html)
 
-Inspired by this story, we will create a classifier that can scan the expenditures logged in campaign finance reports and identify those that may be questionable or newsworthy.
+Inspired by this story, we will create a classifier that can scan the expenditures logged in campaign finance reports and identify those that may be newsworthy.
 
 [![CCDC](_static/ccdc.png)](https://californiacivicdata.org/)
 
