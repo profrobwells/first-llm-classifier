@@ -328,6 +328,10 @@ sample_list = list(df.sample(10).payee)
 And see how it does.
 
 ```python
+sample_list
+```
+
+```python
 {'ARCLIGHT CINEMAS': 'Other',
  '99 CENTS ONLY': 'Other',
  'COMMONWEALTH COMMUNICATIONS': 'Other',
@@ -457,7 +461,7 @@ payee	category
 Or a sum of all the categories.
 
 ```python
-results_df.categories.value_counts()
+results_df.category.value_counts()
 ```
 
 ```
