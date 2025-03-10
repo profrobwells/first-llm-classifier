@@ -14,7 +14,7 @@ Large-language models offer a better deal. We will demonstrate how you can use t
 
 To show the power of this approach, we’ll focus on a specific data set: campaign expenditures.
 
-Candidate for office must disclose the money they spend on everything from pizza to private jets. Tracking their spending can reveal patterns and lead to important stories.
+Candidates for office must disclose the money they spend on everything from pizza to private jets. Tracking their spending can reveal patterns and lead to important stories.
 
 But it’s no easy task. Each election cycle, hundreds of candidates log thousands of transactions into the public databases where spending is disclosed. That’s so much data that no one can examine it all. To make matters worse, campaigns often use vague or misleading descriptions of their spending, making it difficult to parse and understand.
 
