@@ -1,6 +1,6 @@
 # Structured responses
 
-Here's a public service announcement. There's no law that says you have to ask LLMs for essays, poems or personal advice.
+Here's a public service announcement. There's no law that says you have to ask LLMs for essays, poems or relationship advice.
 
 Yes, they're great at drumming up long blocks of text. An LLM can spit out a long answer to almost any question. It's how they've been marketed by companies selling chatbots and more conversational forms of search.
 
