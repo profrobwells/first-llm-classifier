@@ -1,4 +1,4 @@
-# Installing JuptyerLab Desktop
+# Installing JuptyerLab
 
 This class will show you how to interact with the Groq API using the Python computer programming language.
 
