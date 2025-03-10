@@ -68,7 +68,7 @@ You should return the following:
             },
             {
                 "role": "user",
-                "content": "Chicago Bears,Chicago Cubs,Chicago Bulls,Chicago Blackhawks",
+                "content": "Chicago Bears\nChicago Cubs\nChicago Bulls\nChicago Blackhawks",
             },
             {
                 "role": "assistant",
