@@ -1,6 +1,6 @@
 # Installing JuptyerLab Desktop
 
-This class will show you how to interact with the Groq API using Python computer programming language.
+This class will show you how to interact with the Groq API using the Python computer programming language.
 
 You can write Python code in your terminal, in a text file and any number of other places. If you're a skilled programmer who already has a preferred venue for coding, feel free to use as you work through this class.
 
