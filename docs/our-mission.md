@@ -14,7 +14,7 @@ Large-language models offer a better deal. We will demonstrate how you can use t
 
 To show the power of this approach, we’ll focus on a specific data set: campaign expenditures.
 
-Political campaigns must disclose the money they spend on everything from pizza to private jets. Tracking that spending can reveal patterns that go unnoticed and lead to important stories.
+Candidate for office must disclose the money they spend on everything from pizza to private jets. Tracking their spending can reveal patterns and lead to important stories.
 
 But it’s no easy task. Each election cycle, hundreds of candidates log thousands of transactions into the public databases where spending is disclosed. That’s so much data that no one can examine it all. To make matters worse, campaigns often use vague or misleading descriptions of their spending, making it difficult to parse and understand.
 
@@ -22,8 +22,8 @@ It wasn’t until after his 2022 election to Congress that [journalists discover
 
 [![Santos story](_static/santos.png)](https://www.nytimes.com/2022/12/29/nyregion/george-santos-campaign-finance.html)
 
-Inspired by this story, we will create a classifier that can scan the expenditures logged in campaign finance reports and identify those that may be newsworthy.
+Inspired by this scoop, we will create a classifier that can scan the expenditures logged in campaign finance reports and identify those that may be newsworthy.
 
 [![CCDC](_static/ccdc.png)](https://californiacivicdata.org/)
 
-We will draw our data from California, where the California Civic Data Coalition developed a clean, structured version of the state's campaign finance database containing hundreds of thousands of campaign expenses.
+We will draw data from the Golden State, where the California Civic Data Coalition developed a clean, structured version of the state's disclosure reports.
