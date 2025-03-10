@@ -237,7 +237,7 @@ payee
 7989	KOZT
 ```
 
-Now let's adapt what we have to fit. Instead of asking for a sports league back, we will ask the LLM to classify each payee as a restaurant, bar, hotel or other.
+Now let's adapt what we have to fit. Instead of asking for a sports league back, we will ask the LLM to classify each payee as a restaurant, bar, hotel or other establishment.
 
 {emphasize-lines="2-26,33-48,61-66"}
 ```python
