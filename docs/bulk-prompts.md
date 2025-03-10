@@ -344,7 +344,7 @@ classify_payees(sample_list)
  'HYATT REGENCY SAN FRANCISCO': 'Hotel'}
 ```
 
-That's nice for a sample. But how you loop through the entire dataset and code them.
+That's nice for a sample. But how do you loop through the entire dataset and code them.
 
 One way to start is to write a function that will split up a big list of lists.
 
