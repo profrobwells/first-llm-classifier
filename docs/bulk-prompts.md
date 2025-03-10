@@ -328,7 +328,7 @@ sample_list = list(df.sample(10).payee)
 And see how it does.
 
 ```python
-sample_list
+classify_payees(sample_list)
 ```
 
 ```python
