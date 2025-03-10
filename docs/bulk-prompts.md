@@ -357,7 +357,7 @@ def get_batch_list(li, n=10):
     return batch_list
 ```
 
-Before we loop through them, let's add a couple libraries that will let us avoid hammering Groq and keep tabs on our progress.
+Before we loop through our payees, let's add a couple libraries that will let us avoid hammering Groq and keep tabs on our progress.
 
 {emphasize-lines="1,4"}
 ```python
