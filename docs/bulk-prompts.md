@@ -105,7 +105,7 @@ Try that with our team list.
 classify_teams(team_list)
 ```
 
-And you'll see that it works just one, with only a single API call. The same technique a batch of any size.
+And you'll see that it works with only a single API call. The same technique will work for a batch of any size.
 
 ```python
 {'Minnesota Twins': 'Major League Baseball (MLB)',
@@ -113,7 +113,7 @@ And you'll see that it works just one, with only a single API call. The same tec
  'Minnesota Timberwolves': 'National Basketball Association (NBA)'}
 ```
 
-Though, as you batches get bigger, one common problem is that your number of inputs can fail to match your number of inputs. This problem may lessen as LLMs improve, but for now it's a good idea to limit to batches to a few dozen inputs and to verify that you're getting the right number back.
+Though, as you batches get bigger, one common problem is that the number of outputs from the LLM can fail to match the number of inputs you provide. This problem may lessen as LLMs improve, but for now it's a good idea to limit to batches to a few dozen inputs and to verify that you're getting the right number back.
 
 {emphasize-lines="66-69"}
 ```python
