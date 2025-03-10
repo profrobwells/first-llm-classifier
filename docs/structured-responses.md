@@ -325,7 +325,9 @@ If the team's league is not on the list, you should label them as "Other".
     return answer
 ```
 
-You can also increase reliability by priming the LLM with examples of the type of response you want. This technique is called ["few shot prompting"](https://www.ibm.com/think/topics/few-shot-prompting). Here's how it's done:
+You can also increase reliability by priming the LLM with examples of the type of response you want. This technique is called ["few shot prompting"](https://www.ibm.com/think/topics/few-shot-prompting). In this style of prompting, which can feel like a strange form of roleplaying, you provide both the "user" input as well as the "assistant" response you want the LLM to mimic.
+
+Here's how it's done:
 
 {emphasize-lines="23-54"}
 ```python
