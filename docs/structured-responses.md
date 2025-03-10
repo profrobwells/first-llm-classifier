@@ -189,7 +189,7 @@ Your responses must come from the following list:
     return answer
 ```
 
-Now, ask it for a team that's not in one of those leagues.
+Now, ask it for a team that's not in one of those leagues. You should get an error.
 
 ```python
 classify_team("Minnesota Wild")
