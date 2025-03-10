@@ -370,7 +370,7 @@ from retry import retry
 import pandas as pd
 ```
 
-That can then be fit into a new function that will accept a list of payees and classify them batch by batch
+That batching trick can then be fit into a new function that will accept a big list of payees and classify them batch by batch.
 
 ```python
 def classify_batches(name_list, batch_size=10, wait=2):
