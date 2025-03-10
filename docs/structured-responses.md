@@ -276,7 +276,7 @@ And you'll get the answer you expect.
 'Other'
 ```
 
-Most LLMs are pre-programmed to be creative and generate a wide range of responses. For structured responses like this, we don't want that all. We want consistency. So it's a good idea to ask the LLM to be more straightforward by reducing a creativity setting known as `temperature` to zero.
+Most LLMs are pre-programmed to be creative and generate a range of responses to same prompt. For structured responses like this, we don't want that all. We want consistency. So it's a good idea to ask the LLM to be more straightforward by reducing a creativity setting known as `temperature` to zero.
 
 {emphasize-lines="29"}
 ```python
