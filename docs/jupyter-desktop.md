@@ -49,5 +49,5 @@ Click the “New notebook…” button to open the Python interface.
 Welcome to your first Jupyter notebook. Now you're ready to move on to writing code.
 
 :::{admonition} Note
-If you are total new to Python and need help the basics, we recommend you check out ["First Python Notebook"](https://palewi.re/docs/first-python-notebook/), where you can get up to speed.
+If you're struggling to make Jupyter work and need help the basics, we recommend you check out ["First Python Notebook"](https://palewi.re/docs/first-python-notebook/), where you can get up to speed.
 :::
