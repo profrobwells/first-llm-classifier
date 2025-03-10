@@ -4,24 +4,26 @@ Now that you've got your Python environment set up, it's time to start writing p
 
 First, we'll install the libraries we need. The `groq` package is the official client for Groq's API. The `rich` and `ipywidgets` packages are helper libraries that will improve how your outputs look in Jupyter notebooks.
 
-A common way to install packages from inside your JupyterLab Desktop notebook is to use the `!pip` command.
+A common way to install packages from inside your JupyterLab Desktop notebook is to use the `%pip` command.
 
 ```text
 %pip install groq rich ipywidgets
 ```
 
+Drop that into the first cell of a new notebook and hit the play button in the top toolbar.
+
 :::{admonition} Note
 If the `%pip` command doesn't work on your computer, try substituting the `!pip` command instead. Or you can install the packages from the command line on your computer and restart your notebook.
 :::
 
-Now lets import them in the next cell.
+Now lets import them in the cell that appears below the installation output. Hit play again.
 
 ```python
 from rich import print
 from groq import Groq
 ```
 
-Remember saving your Groq API key? Good. You'll need it now. Copy it from that text file and paste it inside the quotemarks as variable.
+Remember saving your Groq API key? Good. You'll need it now. Copy it from that text file and paste it inside the quotemarks as variable in a third cell. You should continue adding new cells as you need throughout the rest of the class.
 
 ```python
 api_key = "Paste your key here"
@@ -105,7 +107,7 @@ analysis, enabling informed decision-making, and promoting transparency through 
 storytelling.
 ```
 
-Let's pick a different model from among [the choices that Groq offers](https://console.groq.com/docs/models). One we could try is Gemma2, an open model from Google.
+Let's pick a different model from among [the choices that Groq offers](https://console.groq.com/docs/models). One we could try is Gemma2, an open model from Google. Rather than add a new cell, lets revise the code we already have and rerun it.
 
 {emphasize-lines="7"}
 ```python
