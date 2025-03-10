@@ -2,7 +2,7 @@
 
 With our LLM prompt showing such strong results, you might be content to leave it as it is. But there are always ways to improve, and you might come across a circumstance where the model's performance is less than ideal.
 
-Earlier in the lesson, we showed how you can use a feed the LLM example of inputs and output prior to your request as part of a "few shot" prompt. An added benefit of coding a supervised sample for testing is that you can also use the training slice of the set as examples that prime the LLM. If you've already done the work of labeling your data, you might as well use it to improve your model as well.
+Earlier in the lesson, we showed how you can feed the LLM examples of inputs and output prior to your request as part of a "few shot" prompt. An added benefit of coding a supervised sample for testing is that you can also use the training slice of the set to prime the LLM with this technique. If you've already done the work of labeling your data, you might as well use it to improve your model as well.
 
 Converting the training set you held to the side into a few-shot prompt is a simple matter of formatting it to fit your LLM's expected input. Here's how you might do it in our case.
 
@@ -37,7 +37,7 @@ def get_fewshots(traning_input, training_ouput, batch_size=10):
     return fewshot_list
 ```
 
-Pass in your training data
+Pass in your training data.
 
 ```python
 fewshot_list = get_fewshots(training_input, training_output)
