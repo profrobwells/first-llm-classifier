@@ -12,7 +12,7 @@ Large-language models offer a better deal. We will demonstrate how you can use t
 
 ## Our example case
 
-To demonstrate the power of this approach, we’ll focus on a specific data set: campaign expenditures.
+To show the power of this approach, we’ll focus on a specific data set: campaign expenditures.
 
 Political campaigns must disclose the money they spend on everything from pizza to private jets. Tracking that spending can reveal patterns that go unnoticed and lead to important stories.
 
