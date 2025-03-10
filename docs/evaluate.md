@@ -4,7 +4,7 @@ Before the advent of large-language models, machine-learning systems were traine
 
 For instance, if you were developing a model to distinguish spam emails from legitimate ones, you would need to provide the model with a set of spam emails and another set of legitimate emails. The model would then use that data to learn the patterns and relationships between the inputs and outputs.
 
-In addition to training the model, the curated input would be used to evaluate its performance. This process typically involved splitting the supervised data into two sets: one for training and one for testing. The model could then be evaluated using a separate set of supervised data to determine how well it performed by ensuring it could generalize to new data, not just memorize the examples it had been fed during training.
+In addition to training the model, the curated input would be used to evaluate its performance. This process typically involved splitting the supervised data into two sets: one for training and one for testing. The model could then be evaluated using a separate set of supervised data to ensur it could generalize beyond the examples it had been fed during training.
 
 Large-language models operate differently. They are trained on vast amounts of text and can generate responses based on the patterns and relationships they learn through various approaches. The result is that they can be used to perform a wide range of tasks without requiring supervised data to be prepared beforehand.
 
