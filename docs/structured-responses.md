@@ -216,7 +216,7 @@ ValueError: National Hockey League (NHL)
 However, since NHL is not in the provided list, I must inform you that the Minnesota Wild does not belong to any of the leagues mentioned (MLB, NFL, NBA). not in list of acceptable answers
 ```
 
-Sometimes there just isn't answer in your validation list. One way to manage that is to allow an "other" category.
+For cases when there isn't an accurate answer in your validation list, you can choose to allow an "other" category.
 
 {emphasize-lines="14,37"}
 ```python
