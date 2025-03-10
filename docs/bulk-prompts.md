@@ -346,7 +346,7 @@ classify_payees(sample_list)
 
 That's nice for a sample. But how do you loop through the entire dataset and code them.
 
-One way to start is to write a function that will split up a big list of lists.
+One way to start is to write a function that will split up a list into batches of a certain size.
 
 ```python
 def get_batch_list(li, n=10):
