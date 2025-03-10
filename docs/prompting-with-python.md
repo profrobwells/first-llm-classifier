@@ -1,6 +1,6 @@
 # Prompting with Python
 
-Now that you've got your Python environment set up, it's time to start writing prompts and getting responses from Groq.
+Now that you've got your Python environment set up, it's time to start writing prompts and sending them off to Groq.
 
 First, we'll install the libraries we need. The `groq` package is the official client for Groq's API. The `rich` and `ipywidgets` packages are helper libraries that will improve how your outputs look in Jupyter notebooks.
 
