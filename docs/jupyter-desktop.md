@@ -2,7 +2,7 @@
 
 This class will show you how to interact with the Groq API using the Python computer programming language.
 
-You can write Python code in your terminal, in a text file and any number of other places. If you're a skilled programmer who already has a preferred venue for coding, feel free to use as you work through this class.
+You can write Python code in your terminal, in a text file and any number of other places. If you're a skilled programmer who already has a preferred venue for coding, feel free to use it as you work through this class.
 
 If you're not, the tool we recommend for beginners is [Project Jupyter](http://jupyter.org/), a browser-based interface where you can write, run, remix and republish code.
 
