@@ -49,7 +49,7 @@ If the team's league is not on the list, you should label them as "Other".
 
 Your answers should be returned as a flat JSON list.
 
-It is very important that the length of JSON list you return is exactly the same as the number of names your receive.
+It is very important that the length of JSON list you return is exactly the same as the number of names you receive.
 
 If I were to submit:
 
@@ -135,7 +135,7 @@ If the team's league is not on the list, you should label them as "Other".
 
 Your answers should be returned as a flat JSON list.
 
-It is very important that the length of JSON list you return is exactly the same as the number of names your receive.
+It is very important that the length of JSON list you return is exactly the same as the number of names you receive.
 
 If I were to submit:
 
@@ -184,17 +184,17 @@ You should return the following:
 
     try:
         assert len(name_list) == len(answer_list)
-    except:
+    except AssertionError:
         raise ValueError(f"Number of outputs ({len(name_list)}) does not equal the number of inputs ({len(answer_list)})")
 
     return dict(zip(name_list, answer_list))
 ```
 
-Okay. Naming sports teams is a cute trick, but what about something hard. And whatever happened to that George Santos idea?
+Okay. Naming sports teams is a cute trick, but what about something hard? And whatever happened to that George Santos idea?
 
-We'll take that on by pulling in our example dataset using `pandas`, a popular data manipulation library in Python.
+We'll tackle that by pulling in our example dataset using `pandas`, a popular data manipulation library in Python.
 
-First we need to install it.
+First, we need to install it. Back to our installation cell.
 
 ```text
 %pip install groq rich ipywidgets retry pandas
@@ -265,7 +265,7 @@ Your output should be a JSON list in the following format:
 
 This means that you have classified "Intercontinental Hotel" as a Hotel, "Pizza Hut" as a Restaurant, "Cheers" as a Bar, "Welsh's Family Restaurant" as a Restaurant, and both "KTLA" and "Direct Mailing" as Other.
 
-Ensure that the number of classifications in your output matches the number of business names in the input. It is very important that the length of JSON list you return is exactly the same as the number of business names your receive.
+Ensure that the number of classifications in your output matches the number of business names in the input. It is very important that the length of JSON list you return is exactly the same as the number of business names youyou receive.
 """
     response = client.chat.completions.create(
         messages=[
@@ -313,7 +313,7 @@ Ensure that the number of classifications in your output matches the number of b
 
     try:
         assert len(name_list) == len(answer_list)
-    except:
+    except AssertionError:
         raise ValueError(f"Number of outputs ({len(name_list)}) does not equal the number of inputs ({len(answer_list)})")
 
     return dict(zip(name_list, answer_list))
