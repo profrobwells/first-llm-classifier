@@ -20,14 +20,14 @@ Next, we make a series of changes to our function to adapt it to work with a bat
 
 * We tweak the name of the function.
 * We change our input argument to a list.
-* We expand our prompt to explain that we are going to provide a list of team names.
-* We ask the LLM to classify them one by one, returning its answers in a JSON list.
+* We expand our prompt to explain that we will provide a list of team names.
+* We ask the LLM to classify them individually, returning its answers in a JSON list.
 * We insist on getting one answer for each input.
-* We tweak our few shot training to reflect this new approach.
+* We tweak our few-shot training to reflect this new approach.
 * We submit our input as a single string with new lines separating each team name.
 * We convert the LLM's response from a string to a list using the `json.loads` function.
 * We check that the LLM's answers are in our list of acceptable answers with a loop through the list.
-* We merge the team names and the LLM's answers into a dictionary that's returned by the function.
+* We merge the team names and the LLM's answers into a dictionary returned by the function.
 
 {emphasize-lines="2,17-27,36-43,46,53-54,62-66"}
 ```python
