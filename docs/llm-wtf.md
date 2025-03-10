@@ -1,4 +1,4 @@
-# The LLM's advantage
+# The LLM advantage
 
 A [large-language model](https://en.wikipedia.org/wiki/Large_language_model) is an artificial intelligence system capable of understanding and generating human language due to its extensive training on vast amounts of text. These systems are commonly referred to by the acronym LLM. The most prominent examples include OpenAI’s ChatGPT, Google’s Gemini and Anthropic’s Claude, but there are many others, including several open-source options.
 
