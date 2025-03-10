@@ -144,7 +144,7 @@ for team in team_list:
 ['Minnesota Timberwolves', 'National Basketball Association (NBA)']
 ```
 
-Due its probabilistic nature, the LLM can sometimes get creative get weird and return something you don't want. You can improve this be adding a validation system that will only accept responses from a pre-defined list.
+Due its probabilistic nature, the LLM can sometimes get creative and return slight variations on the same answer. You can prevent this by adding a validation system that will only accept responses from a pre-defined list.
 
 {emphasize-lines="9-12,31-37"}
 ```python
