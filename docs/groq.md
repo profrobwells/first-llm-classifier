@@ -1,6 +1,6 @@
 # Getting started with Groq
 
-In addition to the commercial services, like ChatGPT, that draw the most media attention, there are several other ways to access large-language models, including free variations that you can download and run directly on your computer.
+In addition to the commercial chatbots that draw the most media attention, there are many other ways to access large-language models, including free variations that you can download and run directly on your computer.
 
 For this demonstration, we will use an online service called [Groq](https://groq.com/). Not to be confused with Elon Musk’s [Grok](https://en.wikipedia.org/wiki/Grok_(chatbot)), an entirely different AI, Groq provides fast, inexpensive API access to various open-source models. It is stable and speedy. Its code is similar to other services, so the skills you learn here should be transferable to other platforms.
 
