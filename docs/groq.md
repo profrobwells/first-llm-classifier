@@ -4,11 +4,11 @@ In addition to the commercial chatbots that draw the most media attention, there
 
 For this demonstration, we will use an online service called [Groq](https://groq.com/). Not to be confused with Elon Musk’s [Grok](https://en.wikipedia.org/wiki/Grok_(chatbot)), an entirely different AI, Groq provides fast, inexpensive API access to various open-source models. It is stable and speedy. Its code is similar to other services, so the skills you learn here should be transferable to other platforms.
 
+To get access to its services, go to [groq.com](https://groq.com/). Click on the "DEV CONSOLE" button on the top right. Create an account.
+
 ![Groq homepage](/_static/groq.png)
 
-To get access to its services, go to [groq.com](https://groq.com/). Click on the "DEV CONSOLE" button on the top right.
-
-Create an account. When you're logged in, click "API keys" on the top right.
+When you're logged in, click "API keys" on the top right.
 
 ![Groq panel](/_static/groq-panel.png)
 
