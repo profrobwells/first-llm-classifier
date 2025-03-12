@@ -18,7 +18,7 @@ By the end, you will understand how LLM classifiers can outperform traditional m
 
 ## Who can take it
 
-Anyone who has dabbled with code and AI is qualified for this class. A curious mind and good attitude are all that’s required, but a familiarity with Python will certainly come in handy.
+This course is free. Anyone who has dabbled with code and AI is qualified to work through the materials. A curious mind and good attitude are all that’s required, but a familiarity with Python will certainly come in handy.
 
 ## Table of contents
 
