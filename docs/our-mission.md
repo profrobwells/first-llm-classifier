@@ -26,4 +26,4 @@ Inspired by this scoop, we will create a classifier that can scan the expenditur
 
 [![CCDC](_static/ccdc.png)](https://californiacivicdata.org/)
 
-We will draw data from the Golden State, where the California Civic Data Coalition developed a clean, structured version of the state's disclosure reports.
+We will draw data from The Golden State, where the California Civic Data Coalition developed a clean, structured version of the statehouse's disclosure data.
