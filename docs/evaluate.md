@@ -65,7 +65,7 @@ training_input, test_input, training_output, test_output = train_test_split(
 
 In a traditional training setup, the next step would be to train a machine-learning model in `sklearn` using the `training_input` and `training_output` sets. The model would then be evaluated using the `test_input` and `test_output` sets.
 
-With the LLM we skip ahead to the testing phase. We pass the `test_input` set our LLM prompt and compare the results to the right answers found in `test_output` set.
+With the LLM we skip ahead to the testing phase. We pass the `test_input` set to our LLM prompt and compare the results to the right answers found in `test_output` set.
 
 All that requires is that we pass the `payee` column from our `test_input` DataFrame to the function we created in the previous chapters.
 
@@ -121,7 +121,7 @@ The support column shows how many instances of each category were in the supervi
 
 The averages at the bottom combine the results for all categories. The macro row is a simple average all the scores in that column. The weighted row is a weighted average based on the number of instances in each category.
 
-In the example result provided above, we can see that the LLM was guessing correctly more than 90% of the time not matter how you slice it.
+In the example result provided above, we can see that the LLM was guessing correctly more than 90% of the time no matter how you slice it.
 
 Another technique for evaluating classifiers is to visualize the results using a chart known as a confusion matrix. This chart shows how often the model correctly predicted each category and where it got things wrong.
 
