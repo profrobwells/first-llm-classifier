@@ -1,27 +1,29 @@
 # Prompting with Python
 
-Now that you've got your Python environment set up, it's time to start writing prompts and getting responses from a Groq.
+Now that you've got your Python environment set up, it's time to start writing prompts and sending them off to Groq.
 
 First, we'll install the libraries we need. The `groq` package is the official client for Groq's API. The `rich` and `ipywidgets` packages are helper libraries that will improve how your outputs look in Jupyter notebooks.
 
-A common way to install packages from inside your JupyterLab Desktop notebook is to use the `!pip` command.
+A common way to install packages from inside your JupyterLab Desktop notebook is to use the `%pip` command.
 
 ```text
 %pip install groq rich ipywidgets
 ```
 
+Drop that into the first cell of a new notebook and hit the play button in the top toolbar.
+
 :::{admonition} Note
 If the `%pip` command doesn't work on your computer, try substituting the `!pip` command instead. Or you can install the packages from the command line on your computer and restart your notebook.
 :::
 
-Now lets import them in the next cell.
+Now lets import them in the cell that appears below the installation output. Hit play again.
 
 ```python
 from rich import print
 from groq import Groq
 ```
 
-Remember saving your Groq API key? Good. You'll need it now. Copy it from that text file and paste it inside the quotemarks as variable.
+Remember saving your Groq API key? Good. You'll need it now. Copy it from that text file and paste it inside the quotemarks as variable in a third cell. You should continue adding new cells as you need throughout the rest of the class.
 
 ```python
 api_key = "Paste your key here"
@@ -105,7 +107,7 @@ analysis, enabling informed decision-making, and promoting transparency through 
 storytelling.
 ```
 
-Let's pick a different model from among [the choices that Groq offers](https://console.groq.com/docs/models). One we could try is Gemma2, an open model from Google.
+Let's pick a different model from among [the choices that Groq offers](https://console.groq.com/docs/models). One we could try is Gemma2, an open model from Google. Rather than add a new cell, lets revise the code we already have and rerun it.
 
 {emphasize-lines="8"}
 ```python
@@ -155,15 +157,15 @@ print(response.content[0].text)
 
 A well-structured prompt helps the LLM provide more accurate and useful responses.
 
-One common technique to improve results is open with a "system" prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
+One common technique for improving results is to open with a "system" prompt to establish the model's tone and role. Let's switch back to Llama 3.3 and provide a `system` message that provides a specific motivation for the LLM's responses.
 
-{emphasize-lines="3-7,13"}
+{emphasize-lines="3-6,12"}
 ```python
 response = client.chat.completions.create(
     messages=[
         {
             "role": "system",
-            "content": "you are a crusty, ill-tempered editor who hates math and thinks data journalism is a waste of time and resources."
+            "content": "you are an enthusiastic nerd who believes data journalism is the future."
         },
         {
             "role": "user",
@@ -188,14 +190,13 @@ informed society.
 
 Want to see how tone affects the response? Change the system prompt to something old-school.
 
-{emphasize-lines="3-7"}
+{emphasize-lines="5"}
 ```python
 response = client.chat.completions.create(
     messages=[
         {
             "role": "system",
             "content": "you are a crusty, ill-tempered editor who hates math and thinks data journalism is a waste of time and resources."
-
         },
         {
             "role": "user",

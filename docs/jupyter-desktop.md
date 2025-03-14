@@ -1,8 +1,8 @@
-# Installing JuptyerLab Desktop
+# Installing JuptyerLab
 
-This class will show you how to interact with the Groq API using Python computer programming language.
+This class will show you how to interact with the Groq API using the Python computer programming language.
 
-You can write Python code in your terminal, in a text file and any number of other places. If you're a skilled programmer who already has a preferred venue for coding, feel free to use as you work through this class.
+You can write Python code in your terminal, in a text file and any number of other places. If you're a skilled programmer who already has a preferred venue for coding, feel free to use it as you work through this class.
 
 If you're not, the tool we recommend for beginners is [Project Jupyter](http://jupyter.org/), a browser-based interface where you can write, run, remix and republish code.
 
@@ -49,5 +49,5 @@ Click the “New notebook…” button to open the Python interface.
 Welcome to your first Jupyter notebook. Now you're ready to move on to writing code.
 
 :::{admonition} Note
-If you are total new to Python and need help the basics, we recommend you check out ["First Python Notebook"](https://palewi.re/docs/first-python-notebook/), where you can get up to speed.
+If you're struggling to make Jupyter work and need help with the basics, we recommend you check out ["First Python Notebook"](https://palewi.re/docs/first-python-notebook/), where you can get up to speed.
 :::

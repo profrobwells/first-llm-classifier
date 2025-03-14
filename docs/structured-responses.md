@@ -1,8 +1,8 @@
 # Structured responses
 
-Here's a public service announcement. There's no law that says you have to ask LLMs for essays, poems or chitchat.
+Here's a public service announcement. There's no law that says you have to ask LLMs for essays, poems or relationship advice.
 
-Yes, they're great at drumming up long blocks of text. An LLM can spit out a long answer to almost any question. It's how they've been marketed by companies selling chatbots and more conversational forms of search.
+Yes, they're great at drumming up long blocks of text. An LLM can spit out a long answer to almost any question. It's how they've been tuned and marketed by companies selling chatbots and more conversational forms of search.
 
 But they're also great at answering simple questions, a skill that has been overlooked in much of the hoopla that followed the introduction of ChatGPT.
 
@@ -144,7 +144,7 @@ for team in team_list:
 ['Minnesota Timberwolves', 'National Basketball Association (NBA)']
 ```
 
-Due its probabilistic nature, the LLM can sometimes get creative get weird and return something you don't want. You can improve this be adding a validation system that will only accept responses from a pre-defined list.
+Due its probabilistic nature, the LLM can sometimes return slight variations on the same answer. You can prevent this by adding a validation system that will only accept responses from a pre-defined list.
 
 {emphasize-lines="9-12,31-37"}
 ```python
@@ -189,7 +189,7 @@ Your responses must come from the following list:
     return answer
 ```
 
-Now, ask it for a team that's not in one of those leagues.
+Now, ask it for a team that's not in one of those leagues. You should get an error.
 
 ```python
 classify_team("Minnesota Wild")
@@ -216,7 +216,7 @@ ValueError: National Hockey League (NHL)
 However, since NHL is not in the provided list, I must inform you that the Minnesota Wild does not belong to any of the leagues mentioned (MLB, NFL, NBA). not in list of acceptable answers
 ```
 
-Sometimes there just isn't answer in your validation list. One way to manage that is to allow an "other" category.
+For cases when there isn't an accurate answer in your validation list, you can choose to allow an "other" category.
 
 {emphasize-lines="14,37"}
 ```python
@@ -276,7 +276,7 @@ And you'll get the answer you expect.
 'Other'
 ```
 
-Most LLMs are pre-programmed to be creative and generate a wide range of responses. For structured responses like this, we don't want that all. We want consistency. So it's a good idea to ask the LLM to be more straightforward by reducing a creativity setting known as `temperature` to zero.
+Most LLMs are pre-programmed to be creative and generate a range of responses to same prompt. For structured responses like this, we don't want that. We want consistency. So it's a good idea to ask the LLM to be more straightforward by reducing a creativity setting known as `temperature` to zero.
 
 {emphasize-lines="29"}
 ```python
@@ -325,7 +325,9 @@ If the team's league is not on the list, you should label them as "Other".
     return answer
 ```
 
-You can also increase reliability by priming the LLM with examples of the type of response you want. This technique is called ["few shot prompting"](https://www.ibm.com/think/topics/few-shot-prompting). Here's how it's done:
+You can also increase reliability by priming the LLM with examples of the type of response you want. This technique is called ["few shot prompting"](https://www.ibm.com/think/topics/few-shot-prompting). In this style of prompting, which can feel like a strange form of roleplaying, you provide both the "user" input as well as the "assistant" response you want the LLM to mimic.
+
+Here's how it's done:
 
 {emphasize-lines="23-54"}
 ```python

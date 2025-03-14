@@ -20,14 +20,14 @@ Next, we make a series of changes to our function to adapt it to work with a bat
 
 * We tweak the name of the function.
 * We change our input argument to a list.
-* We expand our prompt to explain that we are going to provide a list of team names.
-* We ask the LLM to classify them one by one, returning its answers in a JSON list.
+* We expand our prompt to explain that we will provide a list of team names.
+* We ask the LLM to classify them individually, returning its answers in a JSON list.
 * We insist on getting one answer for each input.
-* We tweak our few shot training to reflect this new approach.
+* We tweak our few-shot training to reflect this new approach.
 * We submit our input as a single string with new lines separating each team name.
 * We convert the LLM's response from a string to a list using the `json.loads` function.
 * We check that the LLM's answers are in our list of acceptable answers with a loop through the list.
-* We merge the team names and the LLM's answers into a dictionary that's returned by the function.
+* We merge the team names and the LLM's answers into a dictionary returned by the function.
 
 {emphasize-lines="2,17-27,36-43,46,53-54,62-66"}
 ```python
@@ -49,7 +49,7 @@ If the team's league is not on the list, you should label them as "Other".
 
 Your answers should be returned as a flat JSON list.
 
-It is very important that the length of JSON list you return is exactly the same as the number of names your receive.
+It is very important that the length of JSON list you return is exactly the same as the number of names you receive.
 
 If I were to submit:
 
@@ -68,7 +68,7 @@ You should return the following:
             },
             {
                 "role": "user",
-                "content": "Chicago Bears,Chicago Cubs,Chicago Bulls,Chicago Blackhawks",
+                "content": "Chicago Bears\nChicago Cubs\nChicago Bulls\nChicago Blackhawks",
             },
             {
                 "role": "assistant",
@@ -105,7 +105,7 @@ Try that with our team list.
 classify_teams(team_list)
 ```
 
-And you'll see that it works just one, with only a single API call. The same technique a batch of any size.
+And you'll see that it works with only a single API call. The same technique will work for a batch of any size.
 
 ```python
 {'Minnesota Twins': 'Major League Baseball (MLB)',
@@ -113,7 +113,7 @@ And you'll see that it works just one, with only a single API call. The same tec
  'Minnesota Timberwolves': 'National Basketball Association (NBA)'}
 ```
 
-Though, as you batches get bigger, one common problem is that your number of inputs can fail to match your number of inputs. This problem may lessen as LLMs improve, but for now it's a good idea to limit to batches to a few dozen inputs and to verify that you're getting the right number back.
+Though, as you batches get bigger, one common problem is that the number of outputs from the LLM can fail to match the number of inputs you provide. This problem may lessen as LLMs improve, but for now it's a good idea to limit to batches to a few dozen inputs and to verify that you're getting the right number back.
 
 {emphasize-lines="66-69"}
 ```python
@@ -135,7 +135,7 @@ If the team's league is not on the list, you should label them as "Other".
 
 Your answers should be returned as a flat JSON list.
 
-It is very important that the length of JSON list you return is exactly the same as the number of names your receive.
+It is very important that the length of JSON list you return is exactly the same as the number of names you receive.
 
 If I were to submit:
 
@@ -184,17 +184,17 @@ You should return the following:
 
     try:
         assert len(name_list) == len(answer_list)
-    except:
+    except AssertionError:
         raise ValueError(f"Number of outputs ({len(name_list)}) does not equal the number of inputs ({len(answer_list)})")
 
     return dict(zip(name_list, answer_list))
 ```
 
-Okay. Naming sports teams is a cute trick, but what about something hard. And whatever happened to that George Santos idea?
+Okay. Naming sports teams is a cute trick, but what about something hard? And whatever happened to that George Santos idea?
 
-We'll take that on by pulling in our example dataset using `pandas`, a popular data manipulation library in Python.
+We'll tackle that by pulling in our example dataset using `pandas`, a popular data manipulation library in Python.
 
-First we need to install it.
+First, we need to install it. Back to our installation cell.
 
 ```text
 %pip install groq rich ipywidgets retry pandas
@@ -211,7 +211,7 @@ from retry import retry
 import pandas as pd
 ```
 
-Now we're ready to load the California expenditures data prepared for the class. It contains the distinct list of all vendors listed as payees in itemized receipts attached to disclosure filings over the past 25 years.
+Now we're ready to load the California expenditures data prepared for the class. It contains the distinct list of all vendors listed as payees in itemized receipts attached to disclosure filings.
 
 ```python
 df = pd.read_csv("https://raw.githubusercontent.com/palewire/first-llm-classifier/refs/heads/main/_notebooks/Form460ScheduleESubItem.csv")
@@ -237,7 +237,7 @@ payee
 7989	KOZT
 ```
 
-Now let's adapt what we have to fit. Instead of asking for a sports league back, we will ask the LLM to classify each payee as a restaurant, bar, hotel or other.
+Now let's adapt what we have to fit. Instead of asking for a sports league back, we will ask the LLM to classify each payee as a restaurant, bar, hotel or other establishment.
 
 {emphasize-lines="2-26,33-48,61-66"}
 ```python
@@ -265,7 +265,7 @@ Your output should be a JSON list in the following format:
 
 This means that you have classified "Intercontinental Hotel" as a Hotel, "Pizza Hut" as a Restaurant, "Cheers" as a Bar, "Welsh's Family Restaurant" as a Restaurant, and both "KTLA" and "Direct Mailing" as Other.
 
-Ensure that the number of classifications in your output matches the number of business names in the input. It is very important that the length of JSON list you return is exactly the same as the number of business names your receive.
+Ensure that the number of classifications in your output matches the number of business names in the input. It is very important that the length of JSON list you return is exactly the same as the number of business names youyou receive.
 """
     response = client.chat.completions.create(
         messages=[
@@ -313,7 +313,7 @@ Ensure that the number of classifications in your output matches the number of b
 
     try:
         assert len(name_list) == len(answer_list)
-    except:
+    except AssertionError:
         raise ValueError(f"Number of outputs ({len(name_list)}) does not equal the number of inputs ({len(answer_list)})")
 
     return dict(zip(name_list, answer_list))
@@ -328,6 +328,10 @@ sample_list = list(df.sample(10).payee)
 And see how it does.
 
 ```python
+classify_payees(sample_list)
+```
+
+```python
 {'ARCLIGHT CINEMAS': 'Other',
  '99 CENTS ONLY': 'Other',
  'COMMONWEALTH COMMUNICATIONS': 'Other',
@@ -340,9 +344,9 @@ And see how it does.
  'HYATT REGENCY SAN FRANCISCO': 'Hotel'}
 ```
 
-That's nice for a sample. But how you loop through the entire dataset and code them.
+That's nice for a sample. But how do you loop through the entire dataset and code them.
 
-One way to start is to write a function that will split up a big list of lists.
+One way to start is to write a function that will split up a list into batches of a certain size.
 
 ```python
 def get_batch_list(li, n=10):
@@ -353,7 +357,7 @@ def get_batch_list(li, n=10):
     return batch_list
 ```
 
-Before we loop through them, let's add a couple libraries that will let us avoid hammering Groq and keep tabs on our progress.
+Before we loop through our payees, let's add a couple libraries that will let us avoid hammering Groq and keep tabs on our progress.
 
 {emphasize-lines="1,4"}
 ```python
@@ -366,7 +370,7 @@ from retry import retry
 import pandas as pd
 ```
 
-That can then be fit into a new function that will accept a list of payees and classify them batch by batch
+That batching trick can then be fit into a new function that will accept a big list of payees and classify them batch by batch.
 
 ```python
 def classify_batches(name_list, batch_size=10, wait=2):
@@ -406,9 +410,7 @@ classify_batches(bigger_sample)
 
 Printing out to the console is interesting, but eventually you'll want to be able to work with the results in a more structured way. So let's convert the results into a `pandas` DataFrame by modifying our function.
 
-```python
-
-{emphasize-lines="18-21"}
+{emphasize-lines="20-23"}
 ```python
 def classify_batches(name_list, batch_size=10, wait=2):
     # Store the results
@@ -421,8 +423,10 @@ def classify_batches(name_list, batch_size=10, wait=2):
     for batch in track(batch_list):
         # Classify it
         batch_results = classify_payees(batch)
+
         # Add it to the results
         all_results.update(batch_results)
+
         # Tap the brakes
         time.sleep(wait)
 
@@ -433,13 +437,13 @@ def classify_batches(name_list, batch_size=10, wait=2):
     )
 ```
 
-That dataframe can be stored in a variable.
+Results can now be stored as a DataFrame.
 
 ```python
 results_df = classify_batches(bigger_sample)
 ```
 
-And then inspected using the standard pandas tools. Like a peek at the first records:
+And inspected using the standard `pandas` tools. Like a peek at the first records:
 
 ```python
 results_df.head()
@@ -457,7 +461,7 @@ payee	category
 Or a sum of all the categories.
 
 ```python
-results_df.categories.value_counts()
+results_df.category.value_counts()
 ```
 
 ```
